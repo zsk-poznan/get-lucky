@@ -1,4 +1,4 @@
-FROM debian:jessie-slim
+FROM ubuntu:18.04
 
 RUN apt-get update && apt-get install -y \
     chromium-browser \
@@ -14,7 +14,7 @@ COPY requirements.txt .
 
 RUN python3 -m pip install -r requirements.txt
 
-RUN apt-get purge \
+RUN apt-get purge -y \
     python3-pip
 
 ADD . /home
