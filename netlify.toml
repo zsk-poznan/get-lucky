@@ -1,0 +1,3 @@
+[build]
+    command="cd functions && npm install"
+    publish="public"
