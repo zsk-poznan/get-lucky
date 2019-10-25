@@ -40,6 +40,11 @@ def get_vulcan_keys():
 def get_lucky():
     permissions, cookies = get_vulcan_keys()
 
+    cookies = {
+        cookie['name']:cookie['value']
+        for cookie in cookies
+    }
+
     url = 'https://uonetplus.vulcan.net.pl/poznan/Start.mvc/GetKidsLuckyNumbers'
 
     data = {
