@@ -20,7 +20,8 @@ RUN python3 -m pip install -r requirements.txt
 
 # Remove unnecessary packages
 RUN apt-get purge -y \
-    python3-pip
+    python3-pip \
+    && apt autoremove
 
 ADD . /home
 
