@@ -52,7 +52,8 @@ def get_lucky():
     }
 
     r = requests.get(url, cookies=cookies, data=data)
-    print(r.text)
+    print(r.content.decode('cp1252').encode('utf-8'))
 
 if __name__ == '__main__':
     get_lucky()
+
