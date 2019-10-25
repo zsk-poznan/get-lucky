@@ -22,13 +22,15 @@ const FETCH_OPTIONS = {
   body: JSON.stringify({ query })
 };
 
-exports.handler = async function() {
+async function getLucky() {
   const response = await fetch(URL, FETCH_OPTIONS);
 
-  let { data } = response.json();
+  let { data } = await response.json();
 
   return {
     statusCode: 200,
     body: JSON.stringify({ data: data.findLuckyNumberByID.luckyNumber })
   };
-};
+}
+
+exports.handler = getLucky;
