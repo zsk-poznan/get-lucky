@@ -7,8 +7,12 @@ import requests
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
+from parse_response import parse_response
+from upload import update_lucky
+
 login = os.environ["VULCAN_LOGIN"]
 password = os.environ["VULCAN_PASSWORD"]
+
 
 def get_vulcan_keys():
     options = Options()
@@ -19,7 +23,9 @@ def get_vulcan_keys():
     options.add_argument("--no-sandbox")
 
     driver = webdriver.Chrome(options=options)
-    driver.get("https://cufs.vulcan.net.pl/poznan/Account/LogOn?ReturnUrl=%2Fpoznan%2FFS%2FLS%3Fwa%3Dwsignin1.0%26wtrealm%3Dhttps%253a%252f%252fuonetplus.vulcan.net.pl%252fpoznan%252fLoginEndpoint.aspx%26wctx%3Dhttps%253a%252f%252fuonetplus.vulcan.net.pl%252fpoznan%252fLoginEndpoint.aspx")
+    driver.get(
+        "https://cufs.vulcan.net.pl/poznan/Account/LogOn?ReturnUrl=%2Fpoznan%2FFS%2FLS%3Fwa%3Dwsignin1.0%26wtrealm%3Dhttps%253a%252f%252fuonetplus.vulcan.net.pl%252fpoznan%252fLoginEndpoint.aspx%26wctx%3Dhttps%253a%252f%252fuonetplus.vulcan.net.pl%252fpoznan%252fLoginEndpoint.aspx"
+    )
 
     login_input = driver.find_element_by_id("LoginName")
     password_input = driver.find_element_by_id("Password")
@@ -27,7 +33,6 @@ def get_vulcan_keys():
     login_input.send_keys(login)
     password_input.send_keys(password)
     password_input.submit()
-
 
     sleep(2)
     cookies = driver.get_cookies()
@@ -37,23 +42,21 @@ def get_vulcan_keys():
 
     return permissions, cookies
 
+
 def get_lucky():
     permissions, cookies = get_vulcan_keys()
 
-    cookies = {
-        cookie['name']:cookie['value']
-        for cookie in cookies
-    }
+    headers = {"content-type": "application/x-www-form-urlencoded; charset=UTF-8"}
 
-    url = 'https://uonetplus.vulcan.net.pl/poznan/Start.mvc/GetKidsLuckyNumbers'
-
-    data = {
-        'permissions': permissions
-    }
+    url = "https://uonetplus.vulcan.net.pl/poznan/Start.mvc/GetKidsLuckyNumbers"
+    cookies = {cookie["name"]: cookie["value"] for cookie in cookies}
+    data = {"permissions": permissions}
 
     r = requests.get(url, cookies=cookies, data=data)
-    print(r.content.decode('cp1252').encode('utf-8'))
+    return parse_response(r.text)
 
-if __name__ == '__main__':
-    get_lucky()
+
+if __name__ == "__main__":
+    lucky = get_lucky()
+    update_lucky(lucky)
 
