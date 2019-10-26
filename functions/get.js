@@ -22,12 +22,18 @@ const FETCH_OPTIONS = {
   body: JSON.stringify({ query })
 };
 
+const headers = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "GET"
+};
+
 async function getLucky() {
   const response = await fetch(URL, FETCH_OPTIONS);
 
   let { data } = await response.json();
 
   return {
+    headers,
     statusCode: 200,
     body: JSON.stringify({ data: data.findLuckyNumberByID.luckyNumber })
   };
