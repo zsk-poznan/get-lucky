@@ -58,5 +58,6 @@ def get_lucky():
 
 if __name__ == "__main__":
     lucky = get_lucky()
+    print(lucky)
     update_lucky(lucky)
 
