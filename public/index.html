@@ -98,7 +98,23 @@
         </div>
 
     </div>
+<script>
+  async function getLucky() {
+    const luckyElement = document.getElementById("numerek");
 
+
+
+    r = await fetch("https://get-lucky.netlify.com/.netlify/functions/get");
+    response = await r.json();
+    luckyElement.innerHTML = response.data;
+  }
+
+
+
+  (function() {
+    getLucky();
+  })();
+</script>
 
 </body>
 
