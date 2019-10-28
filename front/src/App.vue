@@ -9,7 +9,7 @@
       <h4>{{error}}</h4>
       <div class="curl">
         <h4 style="color: #DE3131;">curl </h4>
-        <h4>https://lucky.netlify.com/.netlify/get</h4>
+        <h4>https://get-lucky.netlify.com/.netlify/functions/get</h4>
       </div>
     </div>
   </div>
