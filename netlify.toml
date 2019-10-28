@@ -1,5 +1,5 @@
 [build]
     base="front/"
-    command="npm run build && cd ./functions && npm install"
+    command="npm install && npm run build && cd ./functions && npm install"
     functions="./functions"
     publish="dist"
