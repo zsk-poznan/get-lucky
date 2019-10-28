@@ -75,7 +75,8 @@ body {
     background-color: #03303F;
     border-radius: 0.5rem;
     color: white;
-    padding: 1rem;
+    padding: 1rem 1.5rem;
+    text-align: left;
     h4 {
       display: inline;
       font-weight: 300;
@@ -103,7 +104,11 @@ body {
       font-size: 3rem;
     }
     h2 {
-      margin: 0 0 4rem 0;
+      font-size: 8rem;
+      margin: 1rem 0 4rem 0;
+    }
+    h4 {
+      font-size: 0.85rem;
     }
   }
 }
@@ -114,7 +119,7 @@ body {
       font-size: 3rem;
     }
     h2 {
-      margin: 0;
+      margin: 1rem 0 2rem 0;
     }
   }
 }
