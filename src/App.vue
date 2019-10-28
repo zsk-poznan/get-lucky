@@ -1,28 +1,34 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>Number</h1>
+    <h2>{{number}}</h2>
+    <h4>{{error}}</h4>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import axios from 'axios';
 
 export default {
   name: 'app',
-  components: {
-    HelloWorld
+  data() {
+    return {
+      number: null,
+      error: ''
+    }
+  },
+  mounted () {
+    axios.get('https://get-lucky.netlify.com/.netlify/functions/get')
+    .then((response) => {
+      this.number = response.data.data;
+    })
+    .catch((error) => {
+      this.error = error;
+    })
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
