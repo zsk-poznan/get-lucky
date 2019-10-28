@@ -116,7 +116,7 @@ body {
 @media only screen and (max-width: 360px) {
   .container {
     h1 {
-      font-size: 3rem;
+      font-size: 2.5rem;
     }
     h2 {
       margin: 1rem 0 2rem 0;
