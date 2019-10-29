@@ -1,0 +1,69 @@
+service: get-lucky
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  region: eu-central-1
+
+plugins:
+  - serverless-plugin-chrome
+
+# you can add statements to the Lambda function's IAM Role here
+#  iamRoleStatements:
+#    - Effect: "Allow"
+#      Action:
+#        - "s3:ListBucket"
+#      Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ] ]  }
+#    - Effect: "Allow"
+#      Action:
+#        - "s3:PutObject"
+#      Resource:
+#        Fn::Join:
+#          - ""
+#          - - "arn:aws:s3:::"
+#            - "Ref" : "ServerlessDeploymentBucket"
+#            - "/*"
+
+# you can add packaging information here
+#package:
+#  include:
+#    - include-me.js
+#    - include-me-dir/**
+#  exclude:
+#    - exclude-me.js
+#    - exclude-me-dir/**
+
+functions:
+  getLucky:
+    handler: handler.hello
+    #    The following are a few example events you can configure
+    #    NOTE: Please make sure to change your handler code to work with those events
+    #    Check the event documentation for details
+    events:
+      - schedule: cron(30 6 * * *)
+#      - http:
+#          path: users/create
+#          method: get
+#      - websocket: $connect
+#      - s3: ${env:BUCKET}
+#      - cloudwatchEvent:
+#          event:
+#            source:
+#              - "aws.ec2"
+#            detail-type:
+#              - "EC2 Instance State-change Notification"
+#            detail:
+#              state:
+#                - pending
+#      - cloudwatchLog: '/aws/lambda/hello'
+#      - cognitoUserPool:
+#          pool: MyUserPool
+#          trigger: PreSignUp
+
+custom:
+  chrome:
+    flags:
+      - --window-size=500,500
+      - --hide-scrollbars
+    functions:
+      - getLucky

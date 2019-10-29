@@ -1,0 +1,19 @@
+{
+  "name": "scraper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "getChrome.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "serverless-plugin-chrome": "^1.0.0-55"
+  },
+  "dependencies": {
+    "chrome-launcher": "^0.11.2",
+    "chrome-remote-interface": "^0.28.0"
+  }
+}
