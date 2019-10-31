@@ -9,12 +9,14 @@
         <span class="dot dot1"></span>
         <span class="dot dot2"></span>
         <span class="dot dot3"></span>
-        <h2>{{number}}</h2>
       </div>
-      <h4>{{error}}</h4>
-      <div class="curl">
-        <h4 style="color: #DE3131;">curl </h4>
-        <h4>https://get-lucky.netlify.com/.netlify/functions/get</h4>
+      <h2>{{number}}</h2>
+      <div v-html="error"></div>
+      <div class="terminal">
+        <div class="code">
+          <h4 style="color: #DE3131;">curl </h4>
+          <h4>https://get-lucky.netlify.com/.netlify/functions/get</h4>
+        </div>
       </div>
     </div>
   </div>
@@ -24,8 +26,6 @@
 import axios from 'axios';
 
 export default {
-  name: 'app',
-  el: '#loading',
   data() {
     return {
       number: null,
@@ -40,13 +40,10 @@ export default {
       axios.get('https://get-lucky.netlify.com/.netlify/functions/get')
       .then(response => {
         this.number = response.data.data;
-        const dot = document.querySelectorAll(".dot");
-        dot.forEach(item => {
-          item.style.display = "none";
-        });
+        document.querySelector('.loading').style.display = "none";
       })
       .catch(error => {
-        this.error = error;
+        this.error = `<h4>${error}</h4>`;
       })
     }
   }
@@ -55,6 +52,10 @@ export default {
 
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap');
+
+@mixin animation($delay: 0s) {
+  animation: loading 1s linear $delay infinite;
+}
 
 *,*::after,*::before {
   margin: 0;
@@ -68,41 +69,26 @@ body {
   background-color: #FCFCF1;
 }
 
-[v-cloak] > * {
-  display: none;
-}
-
-[v-cloak]::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 1rem;
-  height: 1rem;
-  background-color: black;
-  z-index: 1;
-}
-
 .container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   h1 {
+    text-align: center;
     font-size: 3.5rem;
     text-transform: uppercase;
     margin-bottom: 1rem;
   }
-
-  .loading {
-    h2 {
+  h2 {
       margin: 3rem 0 8rem 0;
       font-size: 12rem;
       font-weight: 700;
-    }
+  }
+
+  .loading {
     .dot{
       height: 10px;
       width: 10px;
@@ -114,27 +100,32 @@ body {
       transform: translate(-50%, -50%);
     }
     .dot1 {
-      left: 47%;
-      animation: loading 1s linear infinite;
+      left: 49%;
+      @include animation();
     }
     .dot2 {
-      animation: loading 1s linear .25s infinite;
+      @include animation(.25s);
     }
     .dot3 {
-      left: 53%;
-      animation: loading 1s linear .5s infinite;
+      left: 51%;
+      @include animation(.5s);
     }
   }
 
-  .curl {
+  .terminal {
     background-color: #03303F;
+    width: 40%;
     border-radius: 0.5rem;
     color: white;
     padding: 1rem 1.5rem;
     text-align: left;
-    h4 {
+    white-space: nowrap;
+    overflow-x: auto;
+    .code {
+      h4 {
       display: inline;
       font-weight: 300;
+      }
     }
   }
 }
@@ -162,12 +153,15 @@ body {
     h1 {
       font-size: 3rem;
     }
+    .terminal {
+      width: 60%;
+    }
     .loading {
       .dot1 {
-        left: 46%;
+        left: 48%;
       }
       .dot3 {
-        left: 54%;
+        left: 52%;
       }
     }
   }
@@ -178,19 +172,22 @@ body {
     h1 {
       font-size: 3rem;
     }
+    h2 {
+        font-size: 8rem;
+        margin: 1rem 0 4rem 0;
+    }
     h4 {
       font-size: 0.85rem;
     }
+    .terminal {
+      width: 80%;
+    }
     .loading {
-      h2 {
-        font-size: 8rem;
-        margin: 1rem 0 4rem 0;
-      }
       .dot1 {
-        left: 44%;
+        left: 46%;
       }
       .dot3 {
-        left: 56%;
+        left: 54%;
       }
     }
   }
