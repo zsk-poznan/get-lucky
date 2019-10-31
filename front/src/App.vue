@@ -5,7 +5,12 @@
     </a>
     <div class="container">
       <h1>Szczęśliwy Numerek</h1>
-      <h2>{{number}}</h2>
+      <div class="loading">
+        <span class="dot dot1"></span>
+        <span class="dot dot2"></span>
+        <span class="dot dot3"></span>
+        <h2>{{number}}</h2>
+      </div>
       <h4>{{error}}</h4>
       <div class="curl">
         <h4 style="color: #DE3131;">curl </h4>
@@ -20,20 +25,30 @@ import axios from 'axios';
 
 export default {
   name: 'app',
+  el: '#loading',
   data() {
     return {
       number: null,
-      error: null
+      error: null,
     }
   },
   mounted () {
-    axios.get('https://get-lucky.netlify.com/.netlify/functions/get')
-    .then((response) => {
-      this.number = response.data.data;
-    })
-    .catch((error) => {
-      this.error = error;
-    })
+    this.getLuckyNumber();
+  },
+  methods: {
+    getLuckyNumber() {
+      axios.get('https://get-lucky.netlify.com/.netlify/functions/get')
+      .then(response => {
+        this.number = response.data.data;
+        const dot = document.querySelectorAll(".dot");
+        dot.forEach(item => {
+          item.style.display = "none";
+        });
+      })
+      .catch(error => {
+        this.error = error;
+      })
+    }
   }
 }
 </script>
@@ -53,6 +68,22 @@ body {
   background-color: #FCFCF1;
 }
 
+[v-cloak] > * {
+  display: none;
+}
+
+[v-cloak]::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1rem;
+  height: 1rem;
+  background-color: black;
+  z-index: 1;
+}
+
 .container {
   position: absolute;
   top: 50%;
@@ -63,12 +94,36 @@ body {
   h1 {
     font-size: 3.5rem;
     text-transform: uppercase;
+    margin-bottom: 1rem;
   }
 
-  h2 {
-    font-size: 12rem;
-    margin: 3rem 0 8rem 0;
-    font-weight: 700;
+  .loading {
+    h2 {
+      margin: 3rem 0 8rem 0;
+      font-size: 12rem;
+      font-weight: 700;
+    }
+    .dot{
+      height: 10px;
+      width: 10px;
+      border-radius: 50%;
+      background-color: #03303F;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .dot1 {
+      left: 47%;
+      animation: loading 1s linear infinite;
+    }
+    .dot2 {
+      animation: loading 1s linear .25s infinite;
+    }
+    .dot3 {
+      left: 53%;
+      animation: loading 1s linear .5s infinite;
+    }
   }
 
   .curl {
@@ -90,10 +145,30 @@ body {
     top: 5%;
   }
 
+@keyframes loading {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
 @media only screen and (max-width: 1340px) {
   .container {
     h1 {
       font-size: 3rem;
+    }
+    .loading {
+      .dot1 {
+        left: 46%;
+      }
+      .dot3 {
+        left: 54%;
+      }
     }
   }
 }
@@ -103,12 +178,20 @@ body {
     h1 {
       font-size: 3rem;
     }
-    h2 {
-      font-size: 8rem;
-      margin: 1rem 0 4rem 0;
-    }
     h4 {
       font-size: 0.85rem;
+    }
+    .loading {
+      h2 {
+        font-size: 8rem;
+        margin: 1rem 0 4rem 0;
+      }
+      .dot1 {
+        left: 44%;
+      }
+      .dot3 {
+        left: 56%;
+      }
     }
   }
 }
@@ -118,8 +201,10 @@ body {
     h1 {
       font-size: 2.5rem;
     }
-    h2 {
-      margin: 1rem 0 2rem 0;
+    .loading {
+      h2 {
+        margin: 1rem 0 2rem 0;
+      }
     }
   }
 }
