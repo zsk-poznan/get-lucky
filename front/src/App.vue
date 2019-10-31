@@ -14,20 +14,19 @@
       <div v-if="error" class="error">
         <h4>{{error}}</h4>
       </div>
-      <div class="terminal">
-        <div class="code">
-          <h4 style="color: #DE3131;">curl </h4>
-          <h4>https://get-lucky.netlify.com/.netlify/functions/get</h4>
-        </div>
-      </div>
+      <Terminal start="curl" rest="https://get-lucky.netlify.com/.netlify/functions/get"/>
     </div>
   </div>
 </template>
 
 <script>
+import Terminal from './components/Terminal.vue';
 import axios from 'axios';
 
 export default {
+  components: {
+    Terminal,
+  },
   data() {
     return {
       number: null,
@@ -119,22 +118,6 @@ body {
     margin-bottom: 1rem;
   }
 
-  .terminal {
-    background-color: #03303F;
-    width: 40%;
-    border-radius: 0.5rem;
-    color: white;
-    padding: 1rem 1.5rem;
-    text-align: left;
-    white-space: nowrap;
-    overflow-x: auto;
-    .code {
-      h4 {
-      display: inline;
-      font-weight: 300;
-      }
-    }
-  }
 }
 
 .GitHub {
