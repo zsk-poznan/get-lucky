@@ -14,7 +14,7 @@
       <div v-if="error" class="error">
         <h4>{{error}}</h4>
       </div>
-      <Terminal start="curl" rest="https://get-lucky.netlify.com/.netlify/functions/get"/>
+      <Terminal code="<h4 style='color: #DE3131;'>curl </h4><h4>https://get-lucky.netlify.com/.netlify/functions/get</h4>"/>
     </div>
   </div>
 </template>

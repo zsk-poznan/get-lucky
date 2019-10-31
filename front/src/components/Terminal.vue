@@ -1,8 +1,6 @@
 <template>
     <div class="terminal">
-        <div class="code">
-            <h4 style="color: #DE3131;">{{start}}</h4>
-            <h4> {{rest}}</h4>
+        <div class="code" v-html="code">
         </div>
     </div>
 </template>
@@ -11,13 +9,12 @@
 export default {
     name: 'Terminal',
     props: {
-        start: String,
-        rest: String
+        code: String,
     }
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .terminal {
     background-color: #03303F;
     width: 40%;
