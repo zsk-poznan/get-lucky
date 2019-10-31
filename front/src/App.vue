@@ -11,7 +11,9 @@
         <span class="dot dot3"></span>
       </div>
       <h2>{{number}}</h2>
-      <div v-html="error"></div>
+      <div v-if="error" class="error">
+        <h4>{{error}}</h4>
+      </div>
       <div class="terminal">
         <div class="code">
           <h4 style="color: #DE3131;">curl </h4>
@@ -43,7 +45,7 @@ export default {
         document.querySelector('.loading').style.display = "none";
       })
       .catch(error => {
-        this.error = `<h4>${error}</h4>`;
+        this.error = error;
       })
     }
   }
@@ -110,6 +112,11 @@ body {
       left: 51%;
       @include animation(.5s);
     }
+  }
+
+  .error {
+    color: red;
+    margin-bottom: 1rem;
   }
 
   .terminal {
