@@ -1,6 +1,7 @@
 <template>
     <div class="terminal">
-        <div class="code" v-html="code">
+        <div class="code">
+            <slot></slot>
         </div>
     </div>
 </template>
@@ -8,9 +9,6 @@
 <script>
 export default {
     name: 'Terminal',
-    props: {
-        code: String,
-    }
 }
 </script>
 
