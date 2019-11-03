@@ -1,6 +1,6 @@
-const getLucky = require("./getLucky");
-const parseResponse = require("./parseResponse");
-const updateLucky = require("./updateLucky");
+const getLucky = require("./src/getLucky");
+const parseResponse = require("./src/parseResponse");
+const updateLucky = require("./src/updateLucky");
 
 module.exports.hello = async () => {
   const response = await getLucky();
