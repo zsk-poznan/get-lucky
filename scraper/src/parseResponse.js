@@ -3,7 +3,7 @@ const parseResponse = response => {
     return parseInt(
       response["data"][0]["Zawartosc"][0]["Zawartosc"][0]["Nazwa"].slice(-2)
     );
-  } catch {
+  } catch (e) {
     return 0;
   }
 };

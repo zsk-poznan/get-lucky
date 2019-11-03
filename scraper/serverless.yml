@@ -36,29 +36,14 @@ plugins:
 functions:
   getLucky:
     handler: handler.hello
-    #    The following are a few example events you can configure
-    #    NOTE: Please make sure to change your handler code to work with those events
-    #    Check the event documentation for details
+    timeout: 60
     events:
-      - schedule: cron(30 6 * * *)
-#      - http:
-#          path: users/create
-#          method: get
-#      - websocket: $connect
-#      - s3: ${env:BUCKET}
-#      - cloudwatchEvent:
-#          event:
-#            source:
-#              - "aws.ec2"
-#            detail-type:
-#              - "EC2 Instance State-change Notification"
-#            detail:
-#              state:
-#                - pending
-#      - cloudwatchLog: '/aws/lambda/hello'
-#      - cognitoUserPool:
-#          pool: MyUserPool
-#          trigger: PreSignUp
+      - schedule: cron(30 6 ? * * *)
+    environment:
+      LUCKY_REF: ${ssm:LUCKY_REF}
+      FAUNADB_KEY: ${ssm:FAUNADB_KEY}
+      VULCAN_LOGIN: ${ssm:VULCAN_LOGIN}
+      VULCAN_PASSWORD: ${ssm:VULCAN_PASSWORD}
 
 custom:
   chrome:
