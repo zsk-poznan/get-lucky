@@ -1,123 +1,16 @@
-<!doctype html>
-<html>
-
-<head>
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
     <meta charset="utf-8">
-    <title>Lucky number</title>
-    <style>
-        #a {
-            margin: 0 auto;
-            height: 600px;
-            width: 1152px;
-            background-color: #FCFCF1;
-        }
-
-        #b {
-            position: relative;
-            width: 35px;
-            height: 35px;
-            left: 1066px;
-            top: 27px;
-            background: url(GitHub-Mark-64px.png);
-        }
-
-        #numerek {
-            position: relative;
-            width: 318px;
-            height: 156px;
-            left: 470px;
-            top: -100px;
-
-            font-family: 'Roboto', sans-serif;
-            font-style: normal;
-            font-weight: 900;
-            font-size: 200px;
-            line-height: 234px;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            text-transform: uppercase;
-
-            color: #03303F;
-        }
-
-        #tekst {
-            position: relative;
-            width: 590px;
-            height: 47px;
-            left: 280px;
-            top: 50px;
-
-            font-family: 'Roboto', sans-serif;
-            font-style: normal;
-            font-weight: 900;
-            font-size: 48px;
-            line-height: 56px;
-            text-align: center;
-            text-transform: uppercase;
-
-            color: #03303F;
-        }
-
-        #podtekst {
-            position: relative;
-            width: 720px;
-            height: 60px;
-            bottom: 190px;
-            left: 230px;
-            font-family: 'Roboto', sans-serif;
-
-            background: #03303F;
-            border-radius: 10px;
-        }
-
-        #c {
-            text-align: left;
-            font-family: cursive;
-            color: red;
-            padding-top: 17px;
-            padding-left: 17px;
-        }
-
-        a {
-            color: white;
-            text-decoration: none;
-        }
-
-    </style>
-</head>
-
-<body style="background-color:#FCFCF1;">
-    <div id="a">
-        <a href="https://github.com/pniedzwiedzinski/get-lucky">
-        <img id="b" src="GitHub-Mark-64px 1.png" />
-        </a>
-        <p id="tekst">Szczęśliwy numerek</p>
-        <p id="numerek">...</p>
-        <div id="podtekst">
-            <p id="c">curl <a href="#">https://get-lucky.netlify.com/.netlify/functions/get</a></p>
-        </div>
-
-    </div>
-<script>
-  async function getLucky() {
-    const luckyElement = document.getElementById("numerek");
-
-
-
-    r = await fetch("https://get-lucky.netlify.com/.netlify/functions/get");
-    response = await r.json();
-    luckyElement.innerHTML = response.data;
-  }
-
-
-
-  (function() {
-    getLucky();
-  })();
-</script>
-
-</body>
-
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Szczęśliwy numerek</title>
+  </head>
+  <body>
+    <noscript>
+      <strong>We're sorry but Szczęśliwy numerek doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
 </html>
