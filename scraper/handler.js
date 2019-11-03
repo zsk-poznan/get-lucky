@@ -1,19 +1,11 @@
-const CDP = require("chrome-remote-interface");
+const getLucky = require("./getLucky");
 
-module.exports.hello = async (event, context, callback, chrome) => {
-  await CDP.Version().then(versionInfo => {
-    console.log(
-      JSON.stringify({
-        versionInfo,
-        chrome
-      })
-    );
-  });
+module.exports.hello = async () => {
+  const lucky = await getLucky();
 
   return {
-    body: JSON.stringify(chrome)
+    body: {
+      lucky
+    }
   };
-
-  // Use this code if you don't use the http event with the LAMBDA-PROXY integration
-  // return { message: 'Go Serverless v1.0! Your function executed successfully!', event };
 };
