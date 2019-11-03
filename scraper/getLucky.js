@@ -46,7 +46,7 @@ const getLucky = async () => {
         }
       ).then(r => r.json())
   );
-
+  page.close();
   return lucky;
 };
 
