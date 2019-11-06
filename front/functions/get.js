@@ -1,4 +1,5 @@
 const fetch = require("node-fetch");
+const { logDate } = require("./utils");
 
 const KEY = process.env.FAUNADB_KEY;
 const LUCKY_REF = process.env.LUCKY_REF;
@@ -28,6 +29,8 @@ const headers = {
 };
 
 async function getLucky() {
+  logDate();
+
   const response = await fetch(URL, FETCH_OPTIONS);
 
   let { data } = await response.json();
