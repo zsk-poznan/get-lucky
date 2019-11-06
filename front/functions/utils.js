@@ -1,4 +1,4 @@
-export function logDate() {
+function logDate() {
   const now = Date.now();
 
   const day = now.getDate();
@@ -7,3 +7,5 @@ export function logDate() {
 
   console.log(`${year}-${month}-${day}`);
 }
+
+exports.logDate = logDate;
