@@ -29,3 +29,8 @@ Thanks to Netlify you can trigger this function by visiting [](https://get-lucky
 ## Maintainer
 
 Current maintainer of this system is Patryk Niedźwiedziński (patryk.niedzwiedzinski@uczen.zsk.poznan.pl). I'm now in third grade, but for sure I won't have time for this project in next grade. If you want to get involved and become maybe later a maintainer send me an email.
+
+## Made with get-lucky
+
+- Send with Messenger https://github.com/pniedzwiedzinski/send-lucky
+- Send with Discord https://github.com/latachz/send-lucky-discord
