@@ -14,7 +14,7 @@ When using `get-lucky` it would be nice of you if you add info about it and link
 
 ## How it works
 
-In main folder you can find python scripts for getting the lucky number and updating the DB entrance (faunadb + graphql). In `/functions` you can find lambda function for accessing this value.
+In main folder you can find python scripts for getting the lucky number and updating the DB entrance (faunadb + graphql). In `/front/functions` you can find lambda function for accessing this value.
 
 ### Getting the lucky number
 
