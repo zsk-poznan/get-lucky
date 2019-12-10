@@ -24,7 +24,7 @@ After that we can get the lucky number by accessing the api endpoint (`https://u
 
 ### Lambda function
 
-Thanks to Netlify you can trigger this function by visiting [](https://get-lucky.netlify.com/.netlify/functions/get)
+Thanks to Netlify you can trigger this function by visiting https://get-lucky.netlify.com/.netlify/functions/get
 
 ## Maintainer
 
