@@ -1,7 +1,7 @@
 import sqlite3
 from datetime import datetime
 
-DB_NAME = "numbers.db"
+DB_NAME = "collect_data/numbers.db"
 
 
 class Connection(object):
