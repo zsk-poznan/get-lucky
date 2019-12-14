@@ -65,6 +65,7 @@ def get_lucky():
 if __name__ == "__main__":
     lucky = get_lucky()
     print(lucky)
-    update_lucky(lucky)
+    if 'FAUNADB_KEY' in os.environ:
+        update_lucky(lucky)
     if 'COLLECT' in os.environ and os.environ['COLLECT']:
         save_to_db(lucky, datetime.now())
