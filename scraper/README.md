@@ -17,4 +17,4 @@ The scraper is embedded into a docker container.
 | COLLECT (optional)     | If set the code will save all numbers into the SQLite database.                 |
 | DB_PATH (optional)     | Sets the path were the `numbers.db` file should be stored.                      |
 
-Read more about `COLLECT` (here)[collect_data]
+Read more about `COLLECT` [here](collect_data)
