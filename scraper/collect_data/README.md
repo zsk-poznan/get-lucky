@@ -13,4 +13,4 @@ cat schema.sql | litecli numbers.sql
 
 > You should backup the `numbers.db`
 
-By default the code will look for the `numbers.db` file in this folder (`scraper/collect_data`) but you can change the path using the `DB_PATH` env variable. Remember to set the docker volume!
+By default the code will look for the `numbers.db` file in this folder (`scraper/collect_data`) but you can change the path using the `DB_PATH` env variable. The path should end with file name i.e. `/some/path/numbers.db`. Remember to set the docker volume!
