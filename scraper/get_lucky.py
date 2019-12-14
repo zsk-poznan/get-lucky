@@ -66,4 +66,5 @@ if __name__ == "__main__":
     lucky = get_lucky()
     print(lucky)
     update_lucky(lucky)
-    save_to_db(lucky, datetime.now())
+    if 'COLLECT' in os.environ and os.environ['COLLECT']:
+        save_to_db(lucky, datetime.now())

@@ -1,7 +1,10 @@
+import os
 import sqlite3
 from datetime import datetime
 
 DB_NAME = "collect_data/numbers.db"
+if 'DB_PATH' in os.environ:
+    DB_NAME = os.environ['DB_PATH']
 
 
 class Connection(object):
