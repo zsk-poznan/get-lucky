@@ -34,6 +34,7 @@ async function getLucky() {
   const response = await fetch(URL, FETCH_OPTIONS);
 
   let { data } = await response.json();
+  console.log(data);
 
   return {
     headers,
