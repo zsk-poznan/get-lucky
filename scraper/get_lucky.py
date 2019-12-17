@@ -1,12 +1,14 @@
 import os
 from time import sleep
 from json import dumps
+from datetime import datetime
 
 import requests
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
+from collect_data.save_to_db import save_to_db
 from parse_response import parse_response
 from upload import update_lucky
 
@@ -36,7 +38,11 @@ def get_vulcan_keys():
 
     sleep(2)
     cookies = driver.get_cookies()
-    permissions = driver.execute_script("return VParam.permissions")
+    try:
+        permissions = driver.execute_script("return VParam.permissions")
+    except:
+        print("Couldn't login")
+        exit(1)
 
     driver.quit()
 
@@ -46,7 +52,7 @@ def get_vulcan_keys():
 def get_lucky():
     permissions, cookies = get_vulcan_keys()
 
-    headers = {"content-type": "application/x-www-form-urlencoded; charset=UTF-8"}
+    # headers = {"content-type": "application/x-www-form-urlencoded; charset=UTF-8"}
 
     url = "https://uonetplus.vulcan.net.pl/poznan/Start.mvc/GetKidsLuckyNumbers"
     cookies = {cookie["name"]: cookie["value"] for cookie in cookies}
@@ -59,5 +65,7 @@ def get_lucky():
 if __name__ == "__main__":
     lucky = get_lucky()
     print(lucky)
-    update_lucky(lucky)
-
+    if 'FAUNADB_KEY' in os.environ:
+        update_lucky(lucky)
+    if 'COLLECT' in os.environ and os.environ['COLLECT']:
+        save_to_db(lucky, datetime.now())

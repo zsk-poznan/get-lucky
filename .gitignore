@@ -1,3 +1,7 @@
+docker-compose.yml
+numbers.db
+
+# Dependecies and trash
 venv
 __pycache__
 .vscode
