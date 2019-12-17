@@ -29,9 +29,10 @@ def prepare_request(lucky):
             id: {LUCKY_REF}
             data: {{
                 luckyNumber: {lucky}
-                date: {format_date(datetime.now())}
+                date: "{format_date(datetime.now())}"
             }}) {{
                 luckyNumber
+                date
         }}
     }}
     """
@@ -42,6 +43,7 @@ def prepare_request(lucky):
 def update_lucky(lucky):
     headers, query = prepare_request(lucky)
     r = requests.post(URL, headers=headers, json={"query": query})
+    print(f"Fauna response: {r.text}")
 
 
 if __name__ == "__main__":
