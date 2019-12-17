@@ -34,7 +34,15 @@ async function getLucky() {
 
   const response = await fetch(URL, FETCH_OPTIONS);
 
-  let { data } = await response.json();
+  let { data, errors }  = await response.json();
+  if (errors) {
+    console.log(errors)
+    return {
+      headers,
+      statusCode: 500,
+      body: JSON.stringify(errors)
+    }
+  }
 
   return {
     headers,
