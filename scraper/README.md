@@ -18,3 +18,21 @@ The scraper is embedded into a docker container.
 | DB_PATH (optional)     | Sets the path were the `numbers.db` file should be stored.                      |
 
 Read more about `COLLECT` [here](collect_data)
+
+### Example configuration
+
+You need to init `number.db` firstly.
+
+```yml
+version: "3.5"
+services:
+  scraper:
+    image: get-lucky
+    environment:
+      VULCAN_LOGIN: { YOUR EMAIL }
+      VULCAN_PASSWORD: { YOUR PASSWORD }
+      COLLECT: "true"
+      DB_PATH: /home/numbers.db
+    volumes:
+      - ./numbers.db:/home/numbers.db
+```
