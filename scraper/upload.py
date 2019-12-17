@@ -44,5 +44,5 @@ def update_lucky(lucky):
     r = requests.post(URL, headers=headers, json={"query": query})
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     update_lucky(input())
