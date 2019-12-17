@@ -1,3 +1,4 @@
 type LuckyNumber {
   luckyNumber: Int
+  date: String
 }

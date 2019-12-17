@@ -10,6 +10,7 @@ const query = `
 {
     findLuckyNumberByID(id: ${LUCKY_REF}) {
         luckyNumber
+        date
     }
 }
 `;
@@ -38,7 +39,7 @@ async function getLucky() {
   return {
     headers,
     statusCode: 200,
-    body: JSON.stringify({ data: data.findLuckyNumberByID.luckyNumber })
+    body: JSON.stringify({ data: data.findLuckyNumberByID })
   };
 }
 

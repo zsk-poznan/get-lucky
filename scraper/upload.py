@@ -1,7 +1,10 @@
 import os
 import base64
+from datetime import datetime
 
 import requests
+
+from collect_data.save_to_db import format_date
 
 URL = "https://graphql.fauna.com/graphql"
 
@@ -26,6 +29,7 @@ def prepare_request(lucky):
             id: {LUCKY_REF}
             data: {{
                 luckyNumber: {lucky}
+                date: {format_date(datetime.now())}
             }}) {{
                 luckyNumber
         }}
