@@ -66,7 +66,7 @@ if __name__ == "__main__":
     lucky = get_lucky()
     print(lucky)
     if 'FAUNADB_KEY' in os.environ:
-        print(f"Uploading with FAUNADB_KEY: {os.environ['FAUNADB_KEY']}")
+        print("Uploading to fauna")
         update_lucky(lucky)
     else:
         print("FAUNADB_KEY not found in ENV, not uploading")
