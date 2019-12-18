@@ -17,7 +17,7 @@ jobs:
       run: docker build scraper -t get-lucky
     - name: Run lucky
       run: |
-        docker run -it \
+        docker run \
         -e VULCAN_LOGIN=${{ secrets.VULCAN_LOGIN }} \
         -e VULCAN_PASSWORD=${{ secrets.VULCAN_PASSWORD }} \
         -e FAUNADB_KEY=${{ secrets.FAUNADB_KEY }} \
