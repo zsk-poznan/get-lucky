@@ -66,6 +66,12 @@ if __name__ == "__main__":
     lucky = get_lucky()
     print(lucky)
     if 'FAUNADB_KEY' in os.environ:
+        print(f"Uploading with FAUNADB_KEY: {os.environ['FAUNADB_KEY']}")
         update_lucky(lucky)
+    else:
+        print("FAUNADB_KEY not found in ENV, not uploading")
     if 'COLLECT' in os.environ and os.environ['COLLECT']:
         save_to_db(lucky, datetime.now())
+    else:
+        print("COLLECT not found in ENV, not storing")
+
