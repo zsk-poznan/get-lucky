@@ -1,0 +1,27 @@
+name: Daily get-lucky
+
+on: push
+#   schedule:
+#     - cron:  '0 5 * * *'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: setup-docker
+      uses: docker-practice/actions-setup-docker@0.0.1
+    - uses: actions/checkout@v1
+    - name: Build image
+      run: docker build scraper -t get-lucky
+    - name: Run lucky
+      run: |
+        docker run -it \
+        -e VULCAN_LOGIN=${{ secrets.VULCAN_LOGIN }} \
+        -e VULCAN_PASSWORD=${{ secrets.VULCAN_PASSWORD }} \
+        -e FAUNADB_KEY=${{ secrets.FAUNADB_KEY }} \
+        -e LUCKY_REF=${{ secrets.LUCKY_REF }} \
+        get-lucky:latest
+        
+        
