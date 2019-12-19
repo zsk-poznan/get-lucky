@@ -1,7 +1,8 @@
 const fetch = require("node-fetch");
 const { logDate } = require("./utils");
 
-const PARSER_ERROR_MSG = "The parser couldn't get the lucky number. We probably working on it but to be sure you can let us know on https://github.com/zsk-poznan/get-lucky"
+const PARSER_ERROR_MSG =
+  "The parser couldn't get the lucky number. We probably working on it but to be sure you can let us know on https://github.com/zsk-poznan/get-lucky";
 
 const KEY = process.env.FAUNADB_KEY;
 const LUCKY_REF = process.env.LUCKY_REF;
@@ -36,25 +37,25 @@ async function getLucky() {
 
   const response = await fetch(URL, FETCH_OPTIONS);
 
-  let { data, errors }  = await response.json();
+  let { data, errors } = await response.json();
 
   if (errors) {
-    console.log(errors)
+    console.log(errors);
     return {
       headers,
       statusCode: 500,
-      body: JSON.stringify({data: null, errors})
-    }
+      body: JSON.stringify({ data: null, errors })
+    };
   }
   date = Date(data.findLuckyNumberByID.date);
-  now = Date.now()
+  now = Date.now();
 
   if (date.getDate() !== now.getDate()) {
     return {
       headers,
       statusCode: 500,
-      body: JSON.stringify({data: null, errors: [PARSER_ERROR_MSG]})
-    }
+      body: JSON.stringify({ data: null, errors: [PARSER_ERROR_MSG] })
+    };
   }
 
   return {
@@ -63,5 +64,5 @@ async function getLucky() {
     body: JSON.stringify({ data: data.findLuckyNumberByID })
   };
 }
-getLucky()
+getLucky();
 exports.handler = getLucky;
