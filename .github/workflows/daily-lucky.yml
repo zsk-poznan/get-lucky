@@ -12,9 +12,8 @@ jobs:
     steps:
     - name: setup-docker
       uses: docker-practice/actions-setup-docker@0.0.1
-    - uses: actions/checkout@v1
-    - name: Build image
-      run: docker build scraper -t get-lucky
+    - name: Pull image
+      run: docker pull zskpoznan/get-lucky
     - name: Run lucky
       run: |
         docker run \
