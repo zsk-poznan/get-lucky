@@ -47,8 +47,8 @@ async function getLucky() {
       body: JSON.stringify({ data: null, errors })
     };
   }
-  date = Date(data.findLuckyNumberByID.date);
-  now = Date.now();
+  date = new Date(data.findLuckyNumberByID.date);
+  now = new Date(Date.now());
 
   if (date.getDate() !== now.getDate()) {
     return {
@@ -64,5 +64,5 @@ async function getLucky() {
     body: JSON.stringify({ data: data.findLuckyNumberByID })
   };
 }
-getLucky();
+
 exports.handler = getLucky;
