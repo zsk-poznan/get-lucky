@@ -42,7 +42,7 @@ export default {
     getLuckyNumber() {
       axios.get('https://get-lucky.netlify.com/.netlify/functions/get')
       .then(response => {
-        this.number = response.data.data;
+        this.number = response.data.data.luckyNumber;
         document.querySelector('.loading').style.display = "none";
       })
       .catch(error => {
