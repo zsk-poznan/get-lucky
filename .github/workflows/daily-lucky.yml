@@ -14,10 +14,9 @@ jobs:
       uses: docker-practice/actions-setup-docker@0.0.1
     - name: Download DB
       run: |
-        mkdir -p $HOME/.config/dbxcli
-        echo ${{ secrets.DROPBOX_AUTH_JSON }} > $HOME/.config/dbxcli/auth.json
+        echo ${{ secrets.DROPBOX_AUTH_JSON }} > auth.json
         docker run -it --rm \
-        -v $HOME/.config/dbxcli:/root/.config/dbxcli \
+        -v $PWD/auth.json:/root/.config/dbxcli/auth.json \
         -v $PWD:/backup \
         kairyou/docker-dbxcli get /tmp/numbers.db numbers.db
     - name: Pull image
@@ -36,7 +35,7 @@ jobs:
     - name: Upload db
       run: |
         docker run -it --rm \
-        -v $HOME/.config/dbxcli:/root/.config/dbxcli \
+        -v $PWD/auth.json:/root/.config/dbxcli/auth.json \
         -v $PWD:/backup \
         kairyou/docker-dbxcli put ./numbers.db /tmp/numbers.db
         
