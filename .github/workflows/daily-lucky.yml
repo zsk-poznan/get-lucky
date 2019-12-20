@@ -14,6 +14,7 @@ jobs:
       uses: docker-practice/actions-setup-docker@0.0.1
     - name: Download DB
       run: |
+        mkdir -p $HOME/.config/dbxcli
         echo ${{ secrets.DROPBOX_AUTH_JSON }} > $HOME/.config/dbxcli/auth.json
         docker run -it --rm \
         -v $HOME/.config/dbxcli:/root/.config/dbxcli \
@@ -34,7 +35,6 @@ jobs:
         zskpoznan/get-lucky:latest
     - name: Upload db
       run: |
-        echo ${{ secrets.DROPBOX_AUTH_JSON }} > $HOME/.config/dbxcli/auth.json
         docker run -it --rm \
         -v $HOME/.config/dbxcli:/root/.config/dbxcli \
         -v $PWD:/backup \
