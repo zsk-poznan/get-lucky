@@ -21,6 +21,6 @@ jobs:
         -e VULCAN_PASSWORD=${{ secrets.VULCAN_PASSWORD }} \
         -e FAUNADB_KEY=${{ secrets.FAUNADB_KEY }} \
         -e LUCKY_REF=${{ secrets.LUCKY_REF }} \
-        get-lucky:latest
+        zskpoznan/get-lucky:latest
         
         
