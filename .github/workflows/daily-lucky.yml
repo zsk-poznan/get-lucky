@@ -12,6 +12,13 @@ jobs:
     steps:
     - name: setup-docker
       uses: docker-practice/actions-setup-docker@0.0.1
+    - name: Download DB
+      run: |
+        echo ${{ secrets.DROPBOX_AUTH_JSON }} > $HOME/.config/dbxcli/auth.json
+        docker run -it --rm \
+        -v $HOME/.config/dbxcli:/root/.config/dbxcli \
+        -v $PWD:/backup \
+        kairyou/docker-dbxcli get /tmp/numbers.db numbers.db
     - name: Pull image
       run: docker pull zskpoznan/get-lucky
     - name: Run lucky
@@ -21,6 +28,16 @@ jobs:
         -e VULCAN_PASSWORD=${{ secrets.VULCAN_PASSWORD }} \
         -e FAUNADB_KEY=${{ secrets.FAUNADB_KEY }} \
         -e LUCKY_REF=${{ secrets.LUCKY_REF }} \
+        -e COLLECT=true \
+        -e DB_PATH=/home/numbers.db \
+        -v $PWD/numbers.db:/home/numbers.db
         zskpoznan/get-lucky:latest
+    - name: Upload db
+      run: |
+        echo ${{ secrets.DROPBOX_AUTH_JSON }} > $HOME/.config/dbxcli/auth.json
+        docker run -it --rm \
+        -v $HOME/.config/dbxcli:/root/.config/dbxcli \
+        -v $PWD:/backup \
+        kairyou/docker-dbxcli put ./numbers.db /tmp/numbers.db
         
         
