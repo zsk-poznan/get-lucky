@@ -23,7 +23,8 @@ jobs:
         docker run -t --rm \
         -v $PWD/auth.json:/root/.config/dbxcli/auth.json \
         -v $PWD:/backup \
-        kairyou/docker-dbxcli get /tmp/numbers.db numbers.db
+        --entrypoint="cat /root/.config/dbxcli/auth.json" \
+        kairyou/docker-dbxcli #get /tmp/numbers.db numbers.db
     - name: Pull image
       run: docker pull zskpoznan/get-lucky
     - name: Run lucky
