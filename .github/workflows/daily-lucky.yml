@@ -15,16 +15,10 @@ jobs:
       uses: docker-practice/actions-setup-docker@0.0.1
     - name: Download DB
       run: |
-        touch auth.json
         docker run -t --rm \
-        -v $PWD/auth.json:/home/auth.json \
-        bash:4.4 bash -c 'echo ${{ secrets.DROPBOX_AUTH_JSON }} > /home/auth.json'
-        cat $PWD/auth.json
-        docker run -t --rm \
-        -v $PWD/auth.json:/root/.config/dbxcli/auth.json \
         -v $PWD:/backup \
-        --entrypoint="cat /root/.config/dbxcli/auth.json" \
-        kairyou/docker-dbxcli #get /tmp/numbers.db numbers.db
+        --entrypoint="echo '${{ secrets.DROPBOX_AUTH_JSON }}' > /root/.config/dbxcli/auth.json && dbxcli" \
+        kairyou/docker-dbxcli get /tmp/numbers.db numbers.db
     - name: Pull image
       run: docker pull zskpoznan/get-lucky
     - name: Run lucky
@@ -41,8 +35,8 @@ jobs:
     - name: Upload db
       run: |
         docker run -t --rm \
-        -v $PWD/auth.json:/root/.config/dbxcli/auth.json \
         -v $PWD:/backup \
+        --entrypoint="echo '${{ secrets.DROPBOX_AUTH_JSON }}' > /root/.config/dbxcli/auth.json && dbxcli" \
         kairyou/docker-dbxcli put ./numbers.db /tmp/numbers.db
         
         
