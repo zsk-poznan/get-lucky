@@ -16,9 +16,10 @@ jobs:
     - name: Download DB
       run: |
         docker run -t --rm \
-        -v $PWD:/backup \
-        --entrypoint="mkdir -p /root/.config/dbxcli && echo '${{ secrets.DROPBOX_AUTH_JSON }}' > /root/.config/dbxcli/auth.json && dbxcli" \
-        kairyou/docker-dbxcli get /tmp/numbers.db numbers.db
+        -e DROPBOX_KEY=${{ secrets.DROPBOX_KEY }} \
+        -v $PWD:/backup
+        zskpoznan/dropbox-ci:latest \
+        get /tmp/numbers.db numbers.db
     - name: Pull image
       run: docker pull zskpoznan/get-lucky
     - name: Run lucky
@@ -35,8 +36,9 @@ jobs:
     - name: Upload db
       run: |
         docker run -t --rm \
-        -v $PWD:/backup \
-        --entrypoint="mkdir -p /root/.config/dbxcli && echo '${{ secrets.DROPBOX_AUTH_JSON }}' > /root/.config/dbxcli/auth.json && dbxcli" \
-        kairyou/docker-dbxcli put ./numbers.db /tmp/numbers.db
+        -e DROPBOX_KEY=${{ secrets.DROPBOX_KEY }} \
+        -v $PWD:/backup
+        zskpoznan/dropbox-ci:latest \
+        put ./numbers.db /tmp/numbers.db
         
         
