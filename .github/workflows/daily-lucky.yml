@@ -14,9 +14,7 @@ jobs:
       uses: docker-practice/actions-setup-docker@0.0.1
     - name: Download DB
       run: |
-        cat <<EOF > auth.json
-        ${{ secrets.DROPBOX_AUTH_JSON }}
-        EOF
+        ./scripts/get_database.sh ${{ secrets.DROPBOX_AUTH_JSON }}
         docker run -it --rm \
         -v $PWD/auth.json:/root/.config/dbxcli/auth.json \
         -v $PWD:/backup \
