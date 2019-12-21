@@ -31,7 +31,7 @@ jobs:
         -e LUCKY_REF=${{ secrets.LUCKY_REF }} \
         -e COLLECT=true \
         -e DB_PATH=/home/numbers.db \
-        -v $PWD/numbers.db:/home/numbers.db
+        -v $PWD/numbers.db:/home/numbers.db \
         zskpoznan/get-lucky:latest
     - name: Upload db
       run: |
