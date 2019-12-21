@@ -19,7 +19,7 @@ jobs:
         docker run -t --rm \
         -v $PWD/auth.json:/home/auth.json \
         bash:4.4 bash -c 'echo ${{ secrets.DROPBOX_AUTH_JSON }} > /home/auth.json'
-        ls
+        cat $PWD/auth.json
         docker run -t --rm \
         -v $PWD/auth.json:/root/.config/dbxcli/auth.json \
         -v $PWD:/backup \
