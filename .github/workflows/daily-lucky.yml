@@ -13,13 +13,12 @@ jobs:
     steps:
     - name: Setup Docker
       uses: docker-practice/actions-setup-docker@0.0.1
-    - uses: actions/checkout@v2.0.0
     - name: Download DB
       run: |
-        docker run -it --rm \
+        docker run -t --rm \
         -v $PWD:/home \
         bash:4.4 bash -c 'echo ${{ secrets.DROPBOX_AUTH_JSON }} > /home/auth.json'
-        docker run -it --rm \
+        docker run -t --rm \
         -v $PWD/auth.json:/root/.config/dbxcli/auth.json \
         -v $PWD:/backup \
         kairyou/docker-dbxcli get /tmp/numbers.db numbers.db
@@ -38,7 +37,7 @@ jobs:
         zskpoznan/get-lucky:latest
     - name: Upload db
       run: |
-        docker run -it --rm \
+        docker run -t --rm \
         -v $PWD/auth.json:/root/.config/dbxcli/auth.json \
         -v $PWD:/backup \
         kairyou/docker-dbxcli put ./numbers.db /tmp/numbers.db
