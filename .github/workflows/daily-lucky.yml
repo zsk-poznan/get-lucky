@@ -17,7 +17,7 @@ jobs:
       run: |
         docker run -t --rm \
         -e DROPBOX_KEY=${{ secrets.DROPBOX_KEY }} \
-        -v $PWD:/backup
+        -v $PWD:/backup \
         zskpoznan/dropbox-ci:latest \
         get /tmp/numbers.db numbers.db
     - name: Pull image
@@ -37,7 +37,7 @@ jobs:
       run: |
         docker run -t --rm \
         -e DROPBOX_KEY=${{ secrets.DROPBOX_KEY }} \
-        -v $PWD:/backup
+        -v $PWD:/backup \
         zskpoznan/dropbox-ci:latest \
         put ./numbers.db /tmp/numbers.db
         
