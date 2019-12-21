@@ -11,8 +11,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: setup-docker
+    - name: Setup Docker
       uses: docker-practice/actions-setup-docker@0.0.1
+    - uses: actions/checkout@v2.0.0
     - name: Download DB
       run: |
         ./scripts/get_database.sh ${{ secrets.DROPBOX_AUTH_JSON }}
