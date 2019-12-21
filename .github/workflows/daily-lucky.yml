@@ -15,9 +15,10 @@ jobs:
       uses: docker-practice/actions-setup-docker@0.0.1
     - name: Download DB
       run: |
+        touch auth.json
         docker run -t --rm \
-        -v $PWD:/home \
-        bash:4.4 bash -c 'echo ${{ secrets.DROPBOX_AUTH_JSON }} > /home/auth.json && ls /home'
+        -v $PWD/auth.json:/home/auth.json \
+        bash:4.4 bash -c 'echo ${{ secrets.DROPBOX_AUTH_JSON }} > /home/auth.json'
         docker run -t --rm \
         -v $PWD/auth.json:/root/.config/dbxcli/auth.json \
         -v $PWD:/backup \
