@@ -1,5 +1,7 @@
 # get-lucky
 
+[This video](https://www.youtube.com/watch?v=XkeIwhKIi84) explains our motivation for this project.
+
 This repository contains source code for scraping the lucky number from Vulcan system. Main reason of this project is to enable other students to play with this data by building bots, or displaying the lucky number on their websites.
 
 ## Usage
