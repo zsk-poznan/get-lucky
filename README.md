@@ -37,3 +37,4 @@ Current maintainer of this system is Patryk Niedźwiedziński (patryk.niedzwiedz
 - Send with Messenger https://github.com/pniedzwiedzinski/send-lucky
 - Send with Discord https://github.com/latachz/send-lucky-discord
 - https://github.com/Henzelix/lucky-number
+- BoboBot - the Telegram bot https://github.com/pniedzwiedzinski/bobo
