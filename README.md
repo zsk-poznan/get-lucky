@@ -1,3 +1,5 @@
+# Depracation notice: You should use [this](https://github.com/zsk-poznan/szczesliwy-numerek-backend) instead 
+
 # get-lucky
 
 [This video](https://www.youtube.com/watch?v=XkeIwhKIi84) explains our motivation for this project.
