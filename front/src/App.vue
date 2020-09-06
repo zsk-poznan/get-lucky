@@ -15,7 +15,7 @@
         <h4>{{error}}</h4>
       </div>
       <Terminal>
-        <h4 style='color: #DE3131;'>curl </h4><h4>https://get-lucky.netlify.com/.netlify/functions/get</h4>
+        <h4 style='color: #DE3131;'>curl </h4><h4>https://get-lucky.netlify.app/.netlify/functions/get</h4>
       </Terminal>
     </div>
   </div>
@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     getLuckyNumber() {
-      axios.get('https://get-lucky.netlify.com/.netlify/functions/get')
+      axios.get('https://get-lucky.netlify.app/.netlify/functions/get')
       .then(response => {
         this.number = response.data.data.luckyNumber;
         document.querySelector('.loading').style.display = "none";
